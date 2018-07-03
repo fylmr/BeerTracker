@@ -19,6 +19,10 @@ class RouterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         (application as App).loginComponent.inject(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         decideOnLogin()
     }
