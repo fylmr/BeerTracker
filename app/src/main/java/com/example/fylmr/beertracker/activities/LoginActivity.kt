@@ -25,12 +25,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
-        setBinding()
         setListeners()
-    }
-
-    private fun setBinding() {
-
     }
 
     private fun setListeners() {

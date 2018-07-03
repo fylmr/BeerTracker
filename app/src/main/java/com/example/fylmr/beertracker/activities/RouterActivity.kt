@@ -3,16 +3,33 @@ package com.example.fylmr.beertracker.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.fylmr.beertracker.App
 import com.example.fylmr.beertracker.Constants
 import com.example.fylmr.beertracker.R
+import com.example.fylmr.beertracker.models.FirebaseModel
+import javax.inject.Inject
 
 class RouterActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var firebaseModel: FirebaseModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        runActivity(LoginActivity::class.java)
+        (application as App).loginComponent.inject(this)
+
+        decideOnLogin()
+    }
+
+    private fun decideOnLogin() {
+        if (firebaseModel.getCurrentUser() == null) {
+            runActivity(LoginActivity::class.java)
+            return
+        }
+
+        runActivity(TrackerActivity::class.java, true)
     }
 
     private fun runActivity(activity: Class<out AppCompatActivity>,
