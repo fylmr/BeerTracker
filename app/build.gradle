@@ -25,6 +25,11 @@ android {
     kapt {
         generateStubs = true
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -32,10 +37,25 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
     implementation 'com.google.firebase:firebase-auth:11.6.0'
+
     testImplementation 'junit:junit:4.12'
+
+    testImplementation "org.robolectric:robolectric:3.8"
+
+    testImplementation 'org.mockito:mockito-core:2.19.0'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
+    androidTestImplementation 'org.mockito:mockito-android:2.7.22'
+
+    testImplementation "org.powermock:powermock-module-junit4:2.0.0-beta.5"
+    testImplementation group: 'org.powermock', name: 'powermock-core', version: '2.0.0-beta.5'
+    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.0-beta.5'
+    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.0-beta.5'
 
     // ViewModel and LiveData
     def lifecycle_version = "1.1.1"
