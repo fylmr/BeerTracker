@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "999049671896",
+    "firebase_url": "https://beertracker-417d9.firebaseio.com",
+    "project_id": "beertracker-417d9",
+    "storage_bucket": "beertracker-417d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999049671896:android:cdb49bddae1ea90e",
+        "android_client_info": {
+          "package_name": "com.example.fylmr.beertracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999049671896-5ta1bqov2jdmu27pa47hv37nk22170qg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fylmr.beertracker",
+            "certificate_hash": "c571d2727b93ce7c3e0a935613ecad1d0dd63ba5"
+          }
+        },
+        {
+          "client_id": "999049671896-3rmij61tl70la8ptcf4bo25hdu9u1qa9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvpdRCXAWkEXTgCIJjMDirVqUijSrcJ_Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999049671896-3rmij61tl70la8ptcf4bo25hdu9u1qa9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
