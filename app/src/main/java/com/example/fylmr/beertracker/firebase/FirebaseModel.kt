@@ -1,4 +1,4 @@
-package com.example.fylmr.beertracker.models
+package com.example.fylmr.beertracker.firebase
 
 import com.example.fylmr.beertracker.utilities.Chronicler
 import com.google.firebase.auth.AuthResult

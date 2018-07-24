@@ -1,11 +1,11 @@
-package com.example.fylmr.beertracker.viewmodels
+package com.example.fylmr.beertracker.login
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.example.fylmr.beertracker.App
-import com.example.fylmr.beertracker.models.FirebaseModel
+import com.example.fylmr.beertracker.firebase.FirebaseModel
 import com.google.firebase.auth.AuthResult
 import io.reactivex.Single
 import javax.inject.Inject

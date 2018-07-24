@@ -1,8 +1,9 @@
-package com.example.fylmr.beertracker.views
+package com.example.fylmr.beertracker.login
 
 import android.view.View
+import com.arellomobile.mvp.MvpView
 
-interface LoginView {
+interface LoginView : MvpView {
 
     fun signInClicked(v: View)
     fun signUpClicked(v: View)

@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import com.example.fylmr.beertracker.App
 import com.example.fylmr.beertracker.Constants
 import com.example.fylmr.beertracker.R
-import com.example.fylmr.beertracker.models.FirebaseModel
+import com.example.fylmr.beertracker.firebase.FirebaseModel
+import com.example.fylmr.beertracker.login.LoginActivity
 import javax.inject.Inject
 
 class RouterActivity : AppCompatActivity() {
@@ -33,7 +34,7 @@ class RouterActivity : AppCompatActivity() {
             return
         }
 
-        runActivity(TrackerActivity::class.java, true)
+        runActivity(LoginActivity::class.java, true) // todo Изменить на обычный вид
     }
 
     private fun runActivity(activity: Class<out AppCompatActivity>,

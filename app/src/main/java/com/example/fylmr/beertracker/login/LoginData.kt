@@ -1,4 +1,4 @@
-package com.example.fylmr.beertracker.entities
+package com.example.fylmr.beertracker.login
 
 data class LoginData(
         var email: String,
