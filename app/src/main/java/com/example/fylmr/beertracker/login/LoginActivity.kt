@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.fylmr.beertracker.R
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -18,10 +17,6 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
 
     @InjectPresenter
     lateinit var loginPresenter: LoginPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): LoginPresenter = LoginPresenter(application)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

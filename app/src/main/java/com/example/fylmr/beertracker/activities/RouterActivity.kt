@@ -19,7 +19,7 @@ class RouterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        (application as App).loginComponent.inject(this)
+        App.firebaseComponent.inject(this)
     }
 
     override fun onResume() {
