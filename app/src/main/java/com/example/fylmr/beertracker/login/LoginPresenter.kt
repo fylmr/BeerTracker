@@ -36,10 +36,19 @@ class LoginPresenter : MvpPresenter<LoginView>() {
         viewState.clearErrors()
         viewState.showLoading()
 
-        if (hasErrors(email, password))
-            return
+        val emailError = emailErrors(email)
+        val passwordError = passwordErrors(password)
 
-        viewState.showLoading()
+        if (emailError != null)
+            viewState.showError(emailError)
+
+        if (passwordError != null)
+            viewState.showError(passwordError)
+
+        if (passwordError != null || emailError != null) {
+            viewState.hideLoading()
+            return
+        }
 
         processMethod(email, password)
                 .subscribe(
@@ -53,17 +62,21 @@ class LoginPresenter : MvpPresenter<LoginView>() {
                         })
     }
 
-    private fun hasErrors(email: String, password: String): Boolean {
-        var flag = false
+    private fun emailErrors(email: String): String? {
+        var message: String? = null
 
-        if (email == "") {
-            flag = true
-        }
+        if (email == "")
+            message = "Email is empty"
 
-        if (password == "") {
-            flag = true
-        }
+        return message
+    }
 
-        return flag
+    private fun passwordErrors(password: String): String? {
+        var message: String? = null
+
+        if (password == "")
+            message = "Password is empty"
+
+        return message
     }
 }

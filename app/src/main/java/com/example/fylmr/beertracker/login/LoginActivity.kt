@@ -1,5 +1,6 @@
 package com.example.fylmr.beertracker.login
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -71,13 +72,14 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         showError(message)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun showError(message: String?) {
         Log.v(TAG, "showGenerealError($message)")
 
         if (message == null) return
 
         error_tv.visibility = View.VISIBLE
-        error_tv.text = message
+        error_tv.text = "${error_tv.text}\n$message"
     }
 
     override fun clearErrors() {

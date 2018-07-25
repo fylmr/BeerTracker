@@ -56,6 +56,7 @@ class LoginPresenterTest {
                 .thenReturn(Single.just(mockAuthResult))
 
         presenter.signUpClicked(LoginData(email, pass))
+
         Mockito.verify(model).signUp(email, pass)
     }
 
@@ -64,11 +65,12 @@ class LoginPresenterTest {
         val email = ""
         val pass = "pass"
 
-        Mockito.`when`(model.signUp(email, pass))
-                .thenReturn(null)
-
         presenter.signUpClicked(LoginData(email, pass))
+
         Mockito.verify(model, Mockito.never()).signUp(email, pass)
+
+        Mockito.verify(loginViewState).showLoading()
+        Mockito.verify(loginViewState).showError(Mockito.anyString())
     }
 
     class AResult : AuthResult {
