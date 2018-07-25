@@ -87,5 +87,6 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         ViewCompat.setBackgroundTintList(password_et, ColorStateList.valueOf(Color.BLACK))
 
         error_tv.visibility = View.GONE
+        error_tv.text = ""
     }
 }

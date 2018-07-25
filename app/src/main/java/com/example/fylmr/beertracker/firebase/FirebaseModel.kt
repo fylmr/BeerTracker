@@ -5,7 +5,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.Single
 
-class FirebaseModel(val firebaseAuth: FirebaseAuth) {
+open class FirebaseModel(val firebaseAuth: FirebaseAuth) {
     val TAG = this::class.java.simpleName
 
     fun getCurrentUser() =
@@ -15,7 +15,7 @@ class FirebaseModel(val firebaseAuth: FirebaseAuth) {
             firebaseAuth.signOut()
 
 
-    fun signIn(email: String, password: String): Single<AuthResult> =
+    open fun signIn(email: String, password: String): Single<AuthResult> =
             Single.create { emitter ->
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnSuccessListener {
