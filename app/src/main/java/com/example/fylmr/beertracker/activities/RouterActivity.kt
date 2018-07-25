@@ -8,6 +8,7 @@ import com.example.fylmr.beertracker.Constants
 import com.example.fylmr.beertracker.R
 import com.example.fylmr.beertracker.firebase.FirebaseModel
 import com.example.fylmr.beertracker.login.LoginActivity
+import com.example.fylmr.beertracker.tracker.TrackerActivity
 import javax.inject.Inject
 
 class RouterActivity : AppCompatActivity() {
@@ -34,7 +35,7 @@ class RouterActivity : AppCompatActivity() {
             return
         }
 
-        runActivity(LoginActivity::class.java, true) // todo Изменить на обычный вид
+        runActivity(TrackerActivity::class.java, true)
     }
 
     private fun runActivity(activity: Class<out AppCompatActivity>,
