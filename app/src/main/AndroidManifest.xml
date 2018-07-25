@@ -18,10 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".activities.TrackerActivity" />
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".tracker.TrackerActivity" />
     </application>
 
 </manifest>

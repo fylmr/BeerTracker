@@ -13,23 +13,14 @@ import com.example.fylmr.beertracker.firebase.FirebaseModelMock
 import com.google.firebase.auth.FirebaseAuth
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.powermock.core.classloader.annotations.PowerMockIgnore
-import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.rule.PowerMockRule
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-@PowerMockIgnore("org.mockito.*", "org.robolectric.*", "android.*")
-@PrepareForTest(FirebaseAuth::class)
 class LoginActivityTest {
-
-    @get:Rule
-    var rule = PowerMockRule()
 
     private var testComponent = TestComponent()
     private lateinit var model: FirebaseModel
