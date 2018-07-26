@@ -29,10 +29,18 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     }
 
     private fun addAlcoClicked(v: View) {
+        val data = getDrinkData()
+
+        trackerPresenter.addAlcoClicked(data)
+    }
+
+    private fun getDrinkData(): DrinkData {
         val vol = volume_et.text.toString()
         val deg = alco_degrees_et.text.toString()
 
-        trackerPresenter.addAlcoClicked(vol, deg)
+        return DrinkData(
+                vol.toDoubleOrNull(),
+                deg.toDoubleOrNull())
     }
 
     override fun setPercents(percents: Double) {

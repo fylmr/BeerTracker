@@ -15,8 +15,11 @@ class TrackerPresenter : MvpPresenter<TrackerView>() {
         App.trackerComponent.inject(this)
     }
 
-    fun addAlcoClicked(vol: String, deg: String) {
+    fun addAlcoClicked(drinkData: DrinkData) {
+        if (drinkData.volume == null)
 
+
+            trackerModel.countAlco(drinkData)
     }
 
 }
