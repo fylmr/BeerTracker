@@ -22,7 +22,7 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class LoginActivityTest {
 
-    private var testComponent = TestComponent()
+    private var testComponent = TestFirebaseComponent()
     private lateinit var model: FirebaseModel
     private lateinit var activity: LoginActivity
 

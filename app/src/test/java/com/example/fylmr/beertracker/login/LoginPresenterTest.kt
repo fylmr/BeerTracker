@@ -27,7 +27,7 @@ class LoginPresenterTest {
     private
     lateinit var loginViewState: `LoginView$$State`
 
-    private var testComponent = TestComponent()
+    private var testComponent = TestFirebaseComponent()
     private val model: FirebaseModel = PowerMockito.mock(FirebaseModel::class.java)
 
     private lateinit var presenter: LoginPresenter

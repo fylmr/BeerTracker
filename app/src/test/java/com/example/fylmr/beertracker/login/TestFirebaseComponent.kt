@@ -6,7 +6,7 @@ import com.example.fylmr.beertracker.firebase.FirebaseModel
 import com.google.firebase.auth.FirebaseAuth
 
 
-class TestComponent : FirebaseComponent {
+class TestFirebaseComponent : FirebaseComponent {
     override fun firebaseAuth(): FirebaseAuth {
         return FirebaseAuth.getInstance()
     }

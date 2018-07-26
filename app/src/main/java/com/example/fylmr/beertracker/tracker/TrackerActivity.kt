@@ -3,6 +3,7 @@ package com.example.fylmr.beertracker.tracker
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
+import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.fylmr.beertracker.R
@@ -19,6 +20,19 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tracker)
+
+        setListeners()
+    }
+
+    private fun setListeners() {
+        add_alco_btn.setOnClickListener(this::addAlcoClicked)
+    }
+
+    private fun addAlcoClicked(v: View) {
+        val vol = volume_et.text.toString()
+        val deg = alco_degrees_et.text.toString()
+
+        trackerPresenter.addAlcoClicked(vol, deg)
     }
 
     override fun setPercents(percents: Double) {
