@@ -1,8 +1,8 @@
 package com.example.fylmr.beertracker.login
 
-import com.example.fylmr.beertracker.activities.RouterActivity
 import com.example.fylmr.beertracker.dagger.FirebaseComponent
 import com.example.fylmr.beertracker.firebase.FirebaseModel
+import com.example.fylmr.beertracker.router.RouterActivity
 import com.google.firebase.auth.FirebaseAuth
 
 

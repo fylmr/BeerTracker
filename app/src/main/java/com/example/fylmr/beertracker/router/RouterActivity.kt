@@ -1,4 +1,4 @@
-package com.example.fylmr.beertracker.activities
+package com.example.fylmr.beertracker.router
 
 import android.content.Intent
 import android.os.Bundle
