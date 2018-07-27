@@ -1,6 +1,7 @@
 package com.example.fylmr.beertracker.tracker
 
 import com.example.fylmr.beertracker.App
+import com.example.fylmr.beertracker.dagger.TrackerComponent
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -16,8 +17,8 @@ class TrackerPresenterTest {
 
     @Mock
     private lateinit var trackerModel: TrackerModel
-
-    private val mockTrackerComponent = MockTrackerComponent()
+    @Mock
+    private lateinit var mockTrackerComponent: TrackerComponent
 
     private lateinit var presenter: TrackerPresenter
 
