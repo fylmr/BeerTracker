@@ -1,13 +1,20 @@
 package com.example.fylmr.beertracker.tracker
 
+import android.util.Log
 import com.example.fylmr.beertracker.App
 import com.example.fylmr.beertracker.dagger.TrackerComponent
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
+import org.powermock.api.mockito.PowerMockito
+import org.powermock.core.classloader.annotations.PrepareForTest
+import org.powermock.modules.junit4.PowerMockRunner
 
+@RunWith(PowerMockRunner::class)
+@PrepareForTest(Log::class)
 class TrackerPresenterTest {
 
     @Mock
@@ -28,6 +35,8 @@ class TrackerPresenterTest {
 
         App.trackerComponent = mockTrackerComponent
 
+        PowerMockito.mockStatic(Log::class.java)
+
         presenter = TrackerPresenter()
         with(presenter) {
             attachView(trackerView)
@@ -37,7 +46,7 @@ class TrackerPresenterTest {
     }
 
     @Test
-    fun addAlcoButton_firesModel() {
+    fun `addAlco fires model`() {
         val deg = 1.0
         val vol = 1.0
         val data = DrinkData(deg, vol)
@@ -51,7 +60,7 @@ class TrackerPresenterTest {
     }
 
     @Test
-    fun `addAlco button doesn't fire model when wrong`() {
+    fun `addAlco doesn't fire model when wrong`() {
         val deg = null
         val vol = 1.0
         val data = DrinkData(deg, vol)
@@ -65,7 +74,7 @@ class TrackerPresenterTest {
     }
 
     @Test
-    fun `addAlco button pass errors to the view when wrong`() {
+    fun `addAlco passes errors to the view when wrong degrees`() {
         val deg = null
         val vol = 1.0
         val data = DrinkData(deg, vol)
@@ -74,6 +83,21 @@ class TrackerPresenterTest {
 
         val expected = DrinkDataErrors(true, false)
         Mockito.verify(trackerViewState).showErrors(expected)
-
+        Mockito.verify(trackerModel, Mockito.never()).countAlco(data)
     }
+
+    @Test
+    fun `addAlco passes errors to the view when wrong vol`() {
+        val deg = 1.0
+        val vol = null
+        val data = DrinkData(deg, vol)
+
+        presenter.addAlcoClicked(data)
+
+        val expected = DrinkDataErrors(false, true)
+        Mockito.verify(trackerViewState).showErrors(expected)
+        Mockito.verify(trackerModel, Mockito.never()).countAlco(data)
+    }
+
+
 }

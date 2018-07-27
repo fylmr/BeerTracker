@@ -36,8 +36,8 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     }
 
     private fun getDrinkData(): DrinkData {
-        val vol = volume_et.text.toString()
         val deg = alco_degrees_et.text.toString()
+        val vol = volume_et.text.toString()
 
         return DrinkData(
                 deg.toDoubleOrNull(),
@@ -60,6 +60,7 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     }
 
     override fun showErrors(drinkDataErrors: DrinkDataErrors) {
+        Log.v(TAG, "showErrors($drinkDataErrors)")
         val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
 
         if (drinkDataErrors.degreesError)

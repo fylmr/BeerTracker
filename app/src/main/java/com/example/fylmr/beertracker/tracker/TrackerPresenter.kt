@@ -1,5 +1,6 @@
 package com.example.fylmr.beertracker.tracker
 
+import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.fylmr.beertracker.App
@@ -7,6 +8,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class TrackerPresenter : MvpPresenter<TrackerView>() {
+    val TAG = this::class.java.simpleName
 
     @Inject
     lateinit var trackerModel: TrackerModel
@@ -16,13 +18,12 @@ class TrackerPresenter : MvpPresenter<TrackerView>() {
     }
 
     fun addAlcoClicked(drinkData: DrinkData) {
-        if (drinkData.volume == null)
-            return
 
         val errors = checkForErrors(drinkData)
 
         if (errors.degreesError || errors.volumeError) {
             viewState.showErrors(errors)
+            Log.v(TAG, "viewstate.showerrors($errors)")
             return
         }
 
