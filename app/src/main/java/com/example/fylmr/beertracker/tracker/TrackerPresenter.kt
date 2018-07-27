@@ -17,9 +17,30 @@ class TrackerPresenter : MvpPresenter<TrackerView>() {
 
     fun addAlcoClicked(drinkData: DrinkData) {
         if (drinkData.volume == null)
+            return
 
+        val errors = checkForErrors(drinkData)
 
-            trackerModel.countAlco(drinkData)
+        if (errors.degreesError || errors.volumeError) {
+            viewState.showErrors(errors)
+            return
+        }
+
+        val alco = trackerModel.countAlco(drinkData)
+        if (alco != null)
+            viewState.setPercents(alco)
+    }
+
+    private fun checkForErrors(drinkData: DrinkData): DrinkDataErrors {
+        val errors = DrinkDataErrors()
+
+        if (drinkData.degrees == null)
+            errors.degreesError = true
+
+        if (drinkData.volume == null)
+            errors.volumeError = true
+
+        return errors
     }
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.fylmr.beertracker.R
@@ -39,8 +40,8 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
         val deg = alco_degrees_et.text.toString()
 
         return DrinkData(
-                vol.toDoubleOrNull(),
-                deg.toDoubleOrNull())
+                deg.toDoubleOrNull(),
+                vol.toDoubleOrNull())
     }
 
     override fun setPercents(percents: Double) {
@@ -56,5 +57,15 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
 
         volume_et.text = SpannableStringBuilder(emptyString)
         alco_degrees_et.text = SpannableStringBuilder(emptyString)
+    }
+
+    override fun showErrors(drinkDataErrors: DrinkDataErrors) {
+        val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
+
+        if (drinkDataErrors.degreesError)
+            alco_degrees_et.startAnimation(shake)
+
+        if (drinkDataErrors.volumeError)
+            volume_et.startAnimation(shake)
     }
 }

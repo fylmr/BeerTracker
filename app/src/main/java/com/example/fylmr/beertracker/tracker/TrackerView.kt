@@ -8,4 +8,6 @@ interface TrackerView : MvpView {
 
     fun clearFields()
 
+    fun showErrors(drinkDataErrors: DrinkDataErrors)
+
 }

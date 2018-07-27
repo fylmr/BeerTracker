@@ -62,4 +62,17 @@ class TrackerPresenterTest {
 
         Mockito.verify(trackerModel, Mockito.never()).countAlco(data)
     }
+
+    @Test
+    fun `addAlco button pass errors to the view when wrong`() {
+        val deg = null
+        val vol = 1.0
+        val data = DrinkData(deg, vol)
+
+        presenter.addAlcoClicked(data)
+
+        val expected = DrinkDataErrors(true, false)
+        Mockito.verify(trackerViewState).showErrors(expected)
+
+    }
 }

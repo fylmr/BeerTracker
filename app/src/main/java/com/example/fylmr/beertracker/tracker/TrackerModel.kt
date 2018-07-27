@@ -13,7 +13,11 @@ open class TrackerModel {
         return calcUnits(data.degrees, data.volume)
     }
 
-    private fun calcUnits(deg: Double, ml: Double): Double =
-            deg * ml / 1000
+    private fun calcUnits(deg: Double?, ml: Double?): Double? {
+        if (deg == null || ml == null)
+            return null
 
+        return deg * ml / 1000
+
+    }
 }
