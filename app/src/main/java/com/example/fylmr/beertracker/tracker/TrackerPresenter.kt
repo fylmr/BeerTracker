@@ -1,6 +1,5 @@
 package com.example.fylmr.beertracker.tracker
 
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.fylmr.beertracker.App
@@ -23,7 +22,6 @@ class TrackerPresenter : MvpPresenter<TrackerView>() {
 
         if (errors.degreesError || errors.volumeError) {
             viewState.showErrors(errors)
-            Log.v(TAG, "viewstate.showerrors($errors)")
             return
         }
 
