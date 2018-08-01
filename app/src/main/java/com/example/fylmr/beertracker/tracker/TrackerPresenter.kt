@@ -36,7 +36,7 @@ class TrackerPresenter : MvpPresenter<TrackerView>() {
         if (drinkData.degrees == null)
             errors.degreesError = true
 
-        if (drinkData.volume == null)
+        if (drinkData.ml == null)
             errors.volumeError = true
 
         return errors
