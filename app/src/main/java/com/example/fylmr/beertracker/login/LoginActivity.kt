@@ -9,15 +9,25 @@ import android.util.Log
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.fylmr.beertracker.R
+import com.example.fylmr.beertracker.firebase.FirebaseModel
 import kotlinx.android.synthetic.main.activity_login.*
+import org.koin.android.ext.android.inject
 
 class LoginActivity : MvpAppCompatActivity(), LoginView {
 
     val TAG = this::class.java.simpleName
 
+    val firebaseModel: FirebaseModel by inject()
+
+    // Moxy
     @InjectPresenter
     lateinit var loginPresenter: LoginPresenter
+
+    @ProvidePresenter
+    fun loginPresenter() = LoginPresenter(firebaseModel)
+    //
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

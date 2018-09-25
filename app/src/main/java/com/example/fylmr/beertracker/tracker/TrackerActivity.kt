@@ -7,9 +7,11 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.fylmr.beertracker.R
 import com.example.fylmr.beertracker.R.string.alcohol_degrees
 import kotlinx.android.synthetic.main.activity_tracker.*
+import org.koin.android.ext.android.inject
 import kotlin.math.roundToInt
 
 class TrackerActivity : MvpAppCompatActivity(), TrackerView {
@@ -17,6 +19,12 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
 
     @InjectPresenter
     lateinit var trackerPresenter: TrackerPresenter
+
+    private val trackerModel: TrackerModel by inject()
+
+    @ProvidePresenter
+    fun trackerPresenter() = TrackerPresenter(trackerModel)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

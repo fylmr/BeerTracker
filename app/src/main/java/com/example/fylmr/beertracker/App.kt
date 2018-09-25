@@ -1,24 +1,19 @@
 package com.example.fylmr.beertracker
 
 import android.app.Application
-import com.example.fylmr.beertracker.dagger.*
+import com.example.fylmr.beertracker.di.firebaseModule
+import com.example.fylmr.beertracker.di.trackerModule
+import org.koin.android.ext.android.startKoin
 
 class App : Application() {
-
-    companion object {
-        lateinit var firebaseComponent: FirebaseComponent
-        lateinit var trackerComponent: TrackerComponent
-    }
 
     override fun onCreate() {
         super.onCreate()
 
-        firebaseComponent = DaggerFirebaseComponent.builder()
-                .firebaseModule(FirebaseModule())
-                .build()
+        startKoin(this, listOf(
+                firebaseModule,
+                trackerModule
+        ))
 
-        trackerComponent = DaggerTrackerComponent.builder()
-                .trackerModule(TrackerModule())
-                .build()
     }
 }

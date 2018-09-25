@@ -2,23 +2,15 @@ package com.example.fylmr.beertracker.login
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.fylmr.beertracker.App
 import com.example.fylmr.beertracker.firebase.FirebaseModel
 import com.example.fylmr.beertracker.utilities.Chronicler
 import com.google.firebase.auth.AuthResult
 import io.reactivex.Single
-import javax.inject.Inject
 
 @InjectViewState
-class LoginPresenter : MvpPresenter<LoginView>() {
+class LoginPresenter(val firebaseModel: FirebaseModel) : MvpPresenter<LoginView>() {
     val TAG = this::class.java.simpleName
 
-    @Inject
-    lateinit var firebaseModel: FirebaseModel
-
-    init {
-        App.firebaseComponent.inject(this)
-    }
 
     fun signInClicked(loginData: LoginData) {
         process(loginData, firebaseModel::signIn)
