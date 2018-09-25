@@ -27,7 +27,7 @@ class TrackerPresenter(val trackerModel: TrackerModel) : MvpPresenter<TrackerVie
         if (drinkData.degrees == null)
             errors.degreesError = true
 
-        if (drinkData.volume == null)
+        if (drinkData.ml == null)
             errors.volumeError = true
 
         return errors
