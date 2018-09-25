@@ -8,4 +8,13 @@ class Constants {
         }
     }
 
+    class Preferences {
+        companion object {
+            val FILE_NAME = "shared_prefs"
+
+            val PREF_WEIGHT = "user_weight"
+            val PREF_SEX = "user_sex"
+        }
+    }
+
 }

@@ -1,12 +1,13 @@
 package com.example.fylmr.beertracker.tracker
 
 import com.example.fylmr.beertracker.tracker.Sex.MALE
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 
 @Suppress("RemoveRedundantBackticks")
 class TrackerModelTest {
-    private val model = TrackerModel()
+    private val model = TrackerModelImpl()
 
     @Test
     fun `calc permillage with a bottle of bear`() {

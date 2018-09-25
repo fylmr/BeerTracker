@@ -4,11 +4,14 @@ import android.text.SpannableStringBuilder
 import android.widget.EditText
 import android.widget.TextView
 import com.example.fylmr.beertracker.R
+import com.example.fylmr.beertracker.humandata.HumanDataModelImpl
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 import org.powermock.core.classloader.annotations.PowerMockIgnore
 import org.powermock.modules.junit4.rule.PowerMockRule
 import org.robolectric.Robolectric
@@ -23,10 +26,17 @@ class TrackerActivityTest {
 
     private lateinit var activity: TrackerActivity
 
+    @Mock
+    private lateinit var trackerModel: TrackerModelImpl
+    @Mock
+    private lateinit var humanDataModel: HumanDataModelImpl
+
     @Before
     fun setup() {
+        MockitoAnnotations.initMocks(this)
+
         activity = Robolectric.setupActivity(TrackerActivity::class.java)
-        activity.trackerPresenter = TrackerPresenter()
+        activity.trackerPresenter = TrackerPresenter(trackerModel, humanDataModel)
     }
 
     @Test

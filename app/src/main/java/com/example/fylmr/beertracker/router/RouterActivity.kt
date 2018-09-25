@@ -1,9 +1,11 @@
 package com.example.fylmr.beertracker.router
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.fylmr.beertracker.Constants
+import com.example.fylmr.beertracker.Constants.RequestCodes.Companion.LOGIN_REQUEST
 import com.example.fylmr.beertracker.R
 import com.example.fylmr.beertracker.firebase.FirebaseModel
 import com.example.fylmr.beertracker.login.LoginActivity
@@ -41,11 +43,11 @@ class RouterActivity : AppCompatActivity() {
         val intent = Intent(this, activity)
 
         if (!finishThisActivity) {
-            startActivityForResult(intent, Constants.RequestCodes.LOGIN_REQUEST)
+            startActivityForResult(intent, LOGIN_REQUEST)
             return
         }
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP or FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
     }

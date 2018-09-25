@@ -1,11 +1,17 @@
 package com.example.fylmr.beertracker.tracker
 
+import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.example.fylmr.beertracker.humandata.HumanDataModel
 
 @InjectViewState
-class TrackerPresenter(val trackerModel: TrackerModel) : MvpPresenter<TrackerView>() {
-    val TAG = this::class.java.simpleName
+class TrackerPresenter(
+        val trackerModel: TrackerModel,
+        val humanDataModel: HumanDataModel
+) : MvpPresenter<TrackerView>() {
+
+    private val tag = this::class.java.simpleName
 
     fun addAlcoClicked(drinkData: DrinkData) {
 
@@ -16,7 +22,12 @@ class TrackerPresenter(val trackerModel: TrackerModel) : MvpPresenter<TrackerVie
             return
         }
 
+        drinkData.sex = humanDataModel.sex
+        drinkData.weight = humanDataModel.weight
+
         val alco = trackerModel.countAlco(drinkData)
+        Log.v(tag, "Count alco result: $alco")
+
         if (alco != null)
             viewState.setPercents(alco)
     }

@@ -1,6 +1,7 @@
 package com.example.fylmr.beertracker.tracker
 
 import android.util.Log
+import com.example.fylmr.beertracker.humandata.HumanDataModelImpl
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,9 +20,10 @@ class TrackerPresenterTest {
     private lateinit var trackerView: TrackerView
     @Mock
     private lateinit var trackerViewState: `TrackerView$$State`
-
     @Mock
-    private lateinit var trackerModel: TrackerModel
+    private lateinit var trackerModel: TrackerModelImpl
+    @Mock
+    private lateinit var humanDataModel: HumanDataModelImpl
 
     private lateinit var presenter: TrackerPresenter
 
@@ -31,7 +33,7 @@ class TrackerPresenterTest {
 
         PowerMockito.mockStatic(Log::class.java)
 
-        presenter = TrackerPresenter(trackerModel)
+        presenter = TrackerPresenter(trackerModel, humanDataModel)
         with(presenter) {
             attachView(trackerView)
             setViewState(trackerViewState)

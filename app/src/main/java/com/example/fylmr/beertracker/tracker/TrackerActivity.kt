@@ -3,28 +3,30 @@ package com.example.fylmr.beertracker.tracker
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
-import android.view.View
 import android.view.animation.AnimationUtils
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.fylmr.beertracker.R
 import com.example.fylmr.beertracker.R.string.alcohol_degrees
+import com.example.fylmr.beertracker.humandata.HumanDataModel
 import kotlinx.android.synthetic.main.activity_tracker.*
 import org.koin.android.ext.android.inject
 import kotlin.math.roundToInt
 
 class TrackerActivity : MvpAppCompatActivity(), TrackerView {
-    val TAG = this::class.java.simpleName
+    private val tag = this::class.java.simpleName
 
+    private val trackerModel: TrackerModel by inject()
+    private val humanDataModel: HumanDataModel by inject()
+
+    // Moxy
     @InjectPresenter
     lateinit var trackerPresenter: TrackerPresenter
 
-    private val trackerModel: TrackerModel by inject()
-
     @ProvidePresenter
-    fun trackerPresenter() = TrackerPresenter(trackerModel)
-
+    fun trackerPresenter() = TrackerPresenter(trackerModel, humanDataModel)
+    //
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +36,10 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     }
 
     private fun setListeners() {
-        add_alco_btn.setOnClickListener(this::addAlcoClicked)
+        add_alco_btn.setOnClickListener { addAlcoClicked() }
     }
 
-    private fun addAlcoClicked(v: View) {
+    private fun addAlcoClicked() {
         val data = getDrinkData()
 
         trackerPresenter.addAlcoClicked(data)
@@ -53,14 +55,14 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     }
 
     override fun setPercents(percents: Double) {
-        Log.v(TAG, "setPercents($percents)")
+        Log.v(tag, "setPercents($percents)")
         val txt = getString(alcohol_degrees, percents.roundToInt().toString())
 
         current_alco_degrees_tv.text = txt
     }
 
     override fun clearFields() {
-        Log.v(TAG, "clearFields()")
+        Log.v(tag, "clearFields()")
         val emptyString = ""
 
         volume_et.text = SpannableStringBuilder(emptyString)
@@ -68,7 +70,7 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     }
 
     override fun showErrors(drinkDataErrors: DrinkDataErrors) {
-        Log.v(TAG, "showErrors($drinkDataErrors)")
+        Log.v(tag, "showErrors($drinkDataErrors)")
         val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
 
         if (drinkDataErrors.degreesError)
