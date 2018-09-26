@@ -10,7 +10,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.fylmr.beertracker.R
 import com.example.fylmr.beertracker.R.string.alcohol_degrees
-import com.example.fylmr.beertracker.humandata.HumanDataModel
 import com.example.fylmr.beertracker.preferences.SettingsActivity
 import kotlinx.android.synthetic.main.activity_tracker.*
 import org.koin.android.ext.android.inject
@@ -20,14 +19,13 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
     private val tag = this::class.java.simpleName
 
     private val trackerModel: TrackerModel by inject()
-    private val humanDataModel: HumanDataModel by inject()
 
     // Moxy
     @InjectPresenter
     lateinit var trackerPresenter: TrackerPresenter
 
     @ProvidePresenter
-    fun trackerPresenter() = TrackerPresenter(trackerModel, humanDataModel)
+    fun trackerPresenter() = TrackerPresenter(trackerModel)
     //
 
     override fun onCreate(savedInstanceState: Bundle?) {

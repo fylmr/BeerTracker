@@ -1,11 +1,23 @@
 package com.example.fylmr.beertracker.tracker
 
+import com.example.fylmr.beertracker.humandata.HumanDataModel
 import com.example.fylmr.beertracker.tracker.Sex.FEMALE
 import com.example.fylmr.beertracker.tracker.Sex.MALE
 
 
-class TrackerModelImpl : TrackerModel {
+class TrackerModelImpl(private val humanDataModel: HumanDataModel) : TrackerModel {
+    override fun addAlco(data: DrinkData): Double? {
+        data.sex = humanDataModel.sex
+        data.weight = humanDataModel.weight
+
+        //todo
+        return 0.toDouble()
+    }
+
     override fun countAlco(data: DrinkData): Double? {
+        data.sex = humanDataModel.sex
+        data.weight = humanDataModel.weight
+
         return calcPermillage(data)
     }
 

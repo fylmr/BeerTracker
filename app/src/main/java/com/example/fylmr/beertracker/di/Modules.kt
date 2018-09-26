@@ -16,10 +16,7 @@ val firebaseModule = module {
 }
 
 val trackerModule = module {
-    single<TrackerModel> { TrackerModelImpl() }
-}
-
-val humanDataModel = module {
     single { SharedPrefsModel(androidApplication()) }
     single<HumanDataModel> { HumanDataModelImpl(get()) }
+    single<TrackerModel> { TrackerModelImpl(get()) }
 }

@@ -3,12 +3,10 @@ package com.example.fylmr.beertracker.tracker
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.fylmr.beertracker.humandata.HumanDataModel
 
 @InjectViewState
 class TrackerPresenter(
-        private val trackerModel: TrackerModel,
-        private val humanDataModel: HumanDataModel
+        private val trackerModel: TrackerModel
 ) : MvpPresenter<TrackerView>() {
 
     private val tag = this::class.java.simpleName
@@ -21,9 +19,6 @@ class TrackerPresenter(
             viewState.showErrors(errors)
             return
         }
-
-        drinkData.sex = humanDataModel.sex
-        drinkData.weight = humanDataModel.weight
 
         val alco = trackerModel.countAlco(drinkData)
         Log.v(tag, "Count alco result: $alco")
