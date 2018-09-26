@@ -2,10 +2,8 @@ package com.example.fylmr.beertracker.humandata
 
 import com.example.fylmr.beertracker.SharedPrefsModel
 import com.example.fylmr.beertracker.tracker.Sex
-import com.example.fylmr.beertracker.tracker.Sex.FEMALE
-import com.example.fylmr.beertracker.tracker.Sex.MALE
 
-class HumanDataModelImpl(val sharedPrefsModel: SharedPrefsModel) : HumanDataModel {
+class HumanDataModelImpl(private val sharedPrefsModel: SharedPrefsModel) : HumanDataModel {
 
     override var weight: Double? = null
         get() = readWeightFromSharedPrefs()
@@ -14,16 +12,11 @@ class HumanDataModelImpl(val sharedPrefsModel: SharedPrefsModel) : HumanDataMode
         get() = readSexFromSharedPrefs()
 
     private fun readSexFromSharedPrefs(): Sex? {
-        val sexInt = sharedPrefsModel.getSex()
-        return when (sexInt) {
-            0 -> MALE
-            1 -> FEMALE
-            else -> null
-        }
+        return sharedPrefsModel.getSex()
     }
 
     private fun readWeightFromSharedPrefs(): Double? {
-        val weight = sharedPrefsModel.getWeight()
+        val weight = sharedPrefsModel.getWeight()?.toDoubleOrNull() ?: return null
 
         if (weight <= 0)
             return null

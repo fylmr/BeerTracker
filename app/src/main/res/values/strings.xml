@@ -13,4 +13,8 @@
     <string name="add_drink">Add drink</string>
     <string name="alcohol_degrees">%1$s%%</string>
     <string name="alcohol_degrees_default">0%</string>
+    <string name="weight">Weight</string>
+    <string name="sex">Sex</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

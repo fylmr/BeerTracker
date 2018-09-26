@@ -7,8 +7,8 @@ import com.example.fylmr.beertracker.humandata.HumanDataModel
 
 @InjectViewState
 class TrackerPresenter(
-        val trackerModel: TrackerModel,
-        val humanDataModel: HumanDataModel
+        private val trackerModel: TrackerModel,
+        private val humanDataModel: HumanDataModel
 ) : MvpPresenter<TrackerView>() {
 
     private val tag = this::class.java.simpleName

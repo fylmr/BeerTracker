@@ -1,5 +1,6 @@
 package com.example.fylmr.beertracker.tracker
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
@@ -10,6 +11,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.fylmr.beertracker.R
 import com.example.fylmr.beertracker.R.string.alcohol_degrees
 import com.example.fylmr.beertracker.humandata.HumanDataModel
+import com.example.fylmr.beertracker.preferences.SettingsActivity
 import kotlinx.android.synthetic.main.activity_tracker.*
 import org.koin.android.ext.android.inject
 import kotlin.math.roundToInt
@@ -37,6 +39,12 @@ class TrackerActivity : MvpAppCompatActivity(), TrackerView {
 
     private fun setListeners() {
         add_alco_btn.setOnClickListener { addAlcoClicked() }
+        preferences_btn.setOnClickListener { openSettings() }
+    }
+
+    private fun openSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun addAlcoClicked() {

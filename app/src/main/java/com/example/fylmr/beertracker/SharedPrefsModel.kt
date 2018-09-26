@@ -1,13 +1,13 @@
 package com.example.fylmr.beertracker
 
 import android.app.Application
-import android.content.Context.MODE_PRIVATE
-import com.example.fylmr.beertracker.Constants.Preferences.Companion.FILE_NAME
+import android.preference.PreferenceManager
 import com.example.fylmr.beertracker.Constants.Preferences.Companion.PREF_SEX
 import com.example.fylmr.beertracker.Constants.Preferences.Companion.PREF_WEIGHT
+import com.example.fylmr.beertracker.tracker.Sex
 
 class SharedPrefsModel(val app: Application) {
-    private val prefs = app.getSharedPreferences(FILE_NAME, MODE_PRIVATE)
+    private val prefs = PreferenceManager.getDefaultSharedPreferences(app)
 
     private fun getDoubleFromPreferences(key: String, defaultValue: Double = (-1).toDouble()): Double {
         return prefs.getFloat(key, defaultValue.toFloat()).toDouble()
@@ -17,11 +17,20 @@ class SharedPrefsModel(val app: Application) {
         return prefs.getInt(key, defaultValue)
     }
 
-    fun getSex(): Int {
-        return getIntFromPreferences(PREF_SEX)
+    private fun getStringFromPreferences(key: String, defaultValue: String = ""): String? {
+        return prefs.getString(key, defaultValue)
     }
 
-    fun getWeight(): Double {
-        return getDoubleFromPreferences(PREF_WEIGHT)
+    fun getSex(): Sex? {
+        val sexStr = getStringFromPreferences(PREF_SEX)
+        return when (sexStr) {
+            "0" -> Sex.MALE
+            "1" -> Sex.FEMALE
+            else -> null
+        }
+    }
+
+    fun getWeight(): String? {
+        return getStringFromPreferences(PREF_WEIGHT)
     }
 }
