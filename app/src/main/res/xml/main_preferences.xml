@@ -3,7 +3,7 @@
     <com.example.fylmr.beertracker.preferences.InplaceEditTextPreference
         android:key="user_weight"
         android:title="@string/weight" />
-    <ListPreference
+    <com.example.fylmr.beertracker.preferences.SexPreference
         android:entries="@array/sex"
         android:entryValues="@array/sex_values"
         android:key="user_sex"

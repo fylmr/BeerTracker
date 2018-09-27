@@ -4,8 +4,8 @@ import android.content.Context
 import android.support.v7.preference.PreferenceViewHolder
 import android.text.SpannableStringBuilder
 import android.util.AttributeSet
-import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.example.fylmr.beertracker.R
 
 class InplaceEditTextPreference : CustomPreference {
@@ -17,15 +17,18 @@ class InplaceEditTextPreference : CustomPreference {
     }
 
     override fun onBindViewHolder(holder: PreferenceViewHolder?) {
-        super.onBindViewHolder(holder)
+//        super.onBindViewHolder(holder)
 
-        val et = holder?.findViewById(R.id.pref_edittext_et) as EditText? ?: return
-        et.hint = title
-        et.text = SpannableStringBuilder(getPref())
+        with(holder?.findViewById(R.id.pref_edittext_et) as EditText? ?: return) {
+            text = SpannableStringBuilder(getPref())
+            setOnEditorActionListener { v, actionId, event ->
+                savePref((holder?.findViewById(R.id.pref_edittext_et) as EditText?)?.text.toString())
+                return@setOnEditorActionListener true
+            }
+        }
 
-        val saveBtn = holder?.findViewById(R.id.pref_edittext_save) as Button? ?: return
-        saveBtn.setOnClickListener {
-            savePref((holder?.findViewById(R.id.pref_edittext_et) as EditText?)?.text.toString())
+        with(holder?.findViewById(R.id.inplace_pref_title_tv) as TextView? ?: return) {
+            text = title
         }
     }
 
